@@ -34,6 +34,7 @@ def gradient_descent(X, y, theta, learning_rate, num_iterations):
 
 def softmax_regression(X, y, learning_rate=0.0001, num_iterations=10000):
 
+    X = np.column_stack((np.ones(X.shape[0]), X))
     n, d = X.shape
     K = len(np.unique(y))
 
@@ -43,3 +44,18 @@ def softmax_regression(X, y, learning_rate=0.0001, num_iterations=10000):
 
     return theta
 
+def predict(X, theta):
+    """
+    Predict class labels using trained softmax regression parameters.
+    """
+    X = np.column_stack((np.ones(X.shape[0]), X))
+    
+    scores = np.dot(X, theta)
+
+    # numerical stability
+    scores -= np.max(scores, axis=1, keepdims=True)
+
+    exp_scores = np.exp(scores)
+    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+
+    return np.argmax(probs, axis=1)
