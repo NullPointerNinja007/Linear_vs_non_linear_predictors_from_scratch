@@ -1,3 +1,8 @@
+"""Grid search for hyperparameter tuning (this is not a true grid search, but a manual loop over combinations)
+for our neural network implementation. We will test different combinations of
+hidden layer sizes, learning rates, and number of iterations to find the best
+configuration for our dataset."""
+
 import sys
 sys.path.append("src")
 
