@@ -5,24 +5,27 @@ import numpy as np
 
 def calculate_gradient(X, y, theta):
 
-    n, d = X.shape
+    n = X.shape[0]
     K = theta.shape[1]
 
-    gradient = np.zeros_like(theta)
+    # Compute scores for all samples
+    scores = X @ theta
 
-    for i in range(n):
+    # Numerical stability
+    scores -= np.max(scores, axis=1, keepdims=True)
 
-        scores = np.dot(X[i], theta)
-        scores -= np.max(scores)
-        exp_scores = np.exp(scores)
-        probs = exp_scores / np.sum(exp_scores)
+    # Softmax probabilities
+    exp_scores = np.exp(scores)
+    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
 
-        for k in range(K):
+    # One-hot encode labels
+    Y = np.zeros_like(probs)
+    Y[np.arange(n), y] = 1
 
-            y_k = 1 if y[i] == k else 0
-            gradient[:, k] += X[i] * (probs[k] - y_k)
+    # Gradient
+    gradient = X.T @ (probs - Y) / n
 
-    return gradient / n
+    return gradient
 
 def gradient_descent(X, y, theta, learning_rate, num_iterations):
 
@@ -49,7 +52,7 @@ def predict(X, theta):
     Predict class labels using trained softmax regression parameters.
     """
     X = np.column_stack((np.ones(X.shape[0]), X))
-    
+
     scores = np.dot(X, theta)
 
     # numerical stability
