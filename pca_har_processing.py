@@ -39,3 +39,8 @@ test_data.to_csv("data/har_test_pca.csv", index=False)
 print("Saved PCA datasets:")
 print("data/har_train_pca.csv")
 print("data/har_test_pca.csv")
+
+'''
+PCA was applied to reduce the 561-dimensional feature space to 50 components while preserving approximately 87.5% of the variance,
+significantly reducing computational cost while maintaining most of the signal information.
+'''
