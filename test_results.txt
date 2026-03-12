@@ -1,0 +1,13 @@
+test results from Heart data:
+shallow neural net:Mean accuracy 0.7274011299435028, Std accuracy 0.01756326257873488
+softmax regression: Mean accuracy 0.7341242937853106, Std accuracy 0.03344632768361583
+
+test results from HAR data set
+with PCA dim reduction
+shallow neural network : test accuracy 0.9083814048184594
+Softmax Regression :Test Accuracy 0.9127926705123854
+
+orignial dataset:
+softmax regression:  test accuracy 0.9463861554122837
+shallow neural net: Test Accuracy 0.9528333898880217
+

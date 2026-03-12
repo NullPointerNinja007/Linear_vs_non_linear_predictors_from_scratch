@@ -7,6 +7,7 @@ import pandas as pd
 from neural_network import train, predict
 
 # Load datasets
+'''
 train_data = pd.read_csv("data/har_train_pca.csv")
 test_data = pd.read_csv("data/har_test_pca.csv")
 
@@ -15,14 +16,37 @@ y_train = train_data["label"].values
 
 X_test = test_data.drop("label", axis=1).values
 y_test = test_data["label"].values
+'''
+# Load original HAR dataset
+X_train = pd.read_csv(
+    "data/UCI HAR Dataset/train/X_train.txt",
+    sep=r"\s+",
+    header=None
+).values
+
+X_test = pd.read_csv(
+    "data/UCI HAR Dataset/test/X_test.txt",
+    sep=r"\s+",
+    header=None
+).values
+
+y_train = pd.read_csv(
+    "data/UCI HAR Dataset/train/y_train.txt",
+    header=None
+).values.flatten() - 1
+
+y_test = pd.read_csv(
+    "data/UCI HAR Dataset/test/y_test.txt",
+    header=None
+).values.flatten() - 1
 
 print("Train shape:", X_train.shape)
 print("Test shape:", X_test.shape)
 
 # Hyperparameter grid
-hidden_dims = [16, 32, 64]
-learning_rates = [0.001, 0.003]
-iterations_list = [5000, 10000]
+hidden_dims = [32, 48, 64]
+learning_rates = [0.01]
+iterations_list = [15000, 20000, 30000]
 
 results = []
 

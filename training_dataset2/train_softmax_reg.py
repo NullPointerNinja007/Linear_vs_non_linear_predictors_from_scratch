@@ -6,6 +6,7 @@ import pandas as pd
 
 from logistic_regression import softmax_regression, predict
 
+np.random.seed(42)
 # Load datasets
 '''
 train_data = pd.read_csv("data/har_train_pca.csv")

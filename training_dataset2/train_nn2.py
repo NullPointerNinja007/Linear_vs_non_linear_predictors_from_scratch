@@ -46,8 +46,8 @@ y_test = pd.read_csv(
 
 #commet unitl here before loading PCA HAR dataset and training on it.
 
-hidden_dim = 64
-learning_rate = 0.001
+hidden_dim = 16
+learning_rate = 0.003
 num_iterations = 10000
 
 W1, b1, W2, b2 = train(

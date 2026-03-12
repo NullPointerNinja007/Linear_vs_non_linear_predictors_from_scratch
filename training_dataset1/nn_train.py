@@ -9,6 +9,7 @@ from sklearn.preprocessing import StandardScaler
 
 from neural_network import train, predict
 
+np.random.seed(7)
 
 # Load dataset
 data = pd.read_csv("data/heart_processed.csv", header=None)
